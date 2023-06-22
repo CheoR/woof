@@ -85,7 +85,7 @@ fun WoofTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic Color creates theme for your app based on the user's wallpaper.
     // only on certain devices that are running Android 12 and up
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
