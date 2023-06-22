@@ -83,7 +83,9 @@ private val DarkColors = darkColorScheme(
 @Composable
 fun WoofTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = false,
+    // Dynamic Color creates theme for your app based on the user's wallpaper.
+    // only on certain devices that are running Android 12 and up
+    dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
