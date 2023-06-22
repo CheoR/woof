@@ -108,6 +108,8 @@ fun DogItem(
     dog: Dog,
     modifier: Modifier = Modifier
 ) {
+    // Card uses medium shape by default,
+    // no need to explicitly set it to the medium shape
     Card(modifier = modifier) {
         Row(
             modifier = Modifier
