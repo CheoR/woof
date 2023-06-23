@@ -24,10 +24,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.woof.data.dogs
 import com.example.woof.ui.theme.WoofTheme
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -35,6 +41,9 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.example.woof.data.Dog
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.foundation.layout.Spacer
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -136,6 +145,25 @@ fun DogIcon(
     )
 }
 
+@Composable
+private fun DogItemButton(
+    expanded: Boolean,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+){
+    IconButton(
+        onClick = onClick,
+        modifier = modifier
+    ) {
+        Icon(
+            imageVector = Icons.Filled.ExpandMore,
+            contentDescription = stringResource(R.string.expand_button_content_description),
+            tint = MaterialTheme.colorScheme.secondary
+        )
+    }
+}
+
+
 /**
  * Composable that displays a list item containing a dog icon and their information.
  *
@@ -147,16 +175,24 @@ fun DogItem(
     dog: Dog,
     modifier: Modifier = Modifier
 ) {
+    var expanded by remember { mutableStateOf(false) }
+
     // Card uses medium shape by default,
     // no need to explicitly set it to the medium shape
     Card(modifier = modifier) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(dimensionResource(id = R.dimen.padding_small))
+                .padding(dimensionResource(R.dimen.padding_small))
         ) {
             DogIcon(dog.imageResourceId)
             DogInformation(dog.name, dog.age)
+            Spacer(modifier = Modifier.weight(1f))
+            DogItemButton(
+                expanded = expanded,
+                onClick = { /*TODO*/ }
+            )
+
         }
     }
 }
