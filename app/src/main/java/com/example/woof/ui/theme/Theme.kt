@@ -108,8 +108,8 @@ fun WoofTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        shapes = Shapes,
-        typography = Typography,
+        shapes = Shapes, // from Shape.kt
+        typography = Typography, // from Type.kt
         content = content
     )
 }
