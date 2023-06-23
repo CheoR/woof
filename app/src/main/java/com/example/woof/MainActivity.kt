@@ -7,6 +7,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -202,7 +205,19 @@ fun DogItem(
     // Card uses medium shape by default,
     // no need to explicitly set it to the medium shape
     Card(modifier = modifier) {
-        Column() {
+        Column(
+            modifier = Modifier
+                    // to animate the size (list item height) change
+                .animateContentSize(
+                    // customize the animation
+                    // with bounce
+                    animationSpec = spring(
+                        dampingRatio = Spring.DampingRatioLowBouncy,
+                        stiffness = Spring.StiffnessMedium ,
+                    )
+
+                )
+        ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
