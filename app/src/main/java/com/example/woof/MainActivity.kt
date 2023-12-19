@@ -50,6 +50,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.material.icons.filled.ExpandLess
+import androidx.compose.ui.unit.dp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,6 +76,7 @@ fun DogHobby(
 ){
     Column(
         modifier = modifier
+            .padding(start = 8.dp)
     ) {
         Text(
             text = stringResource(R.string.about),
